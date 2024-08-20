@@ -12,24 +12,5 @@ body, html {
   height: 100%; /* Make the map fill the entire screen */
 }
 
-/* Style for the save button */
-#saveMap {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-  z-index: 1000; /* Ensure the button appears on top of the map */
-}
-
-/* Change button style on hover */
-#saveMap:hover {
-  background-color: #45a049;
-}
 
   

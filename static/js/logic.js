@@ -1,34 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+// Initialize the map and set its view to Washington, DC
+var map = L.map('map').setView([38.89511, -77.03637], 12);  // Coordinates for Washington, DC
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Leaflet Step-1</title>
+// Add a tile layer (you can use different tile providers like OpenStreetMap, Mapbox, etc.)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin="" />
-
-  <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
-</head>
-
-<body>
-
-  <!-- The div that holds our map -->
-  <div id="map"></div>
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-  <!-- D3 JavaScript -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <!-- Our JavaScript -->
-  <script type="text/javascript" src="static/js/logic.js"></script>
-</body>
-
-</html>
+// Load the GeoJSON data
+fetch('Wards_from_2022.geojson')
+    .then(response => response.json())
+    .then(geojsonData => {
+        // Add the GeoJSON layer to the map
+        L.geoJSON(geojsonData, {
+            style: function (feature) {
+                return {
+                    color: "#ff7800",
+                    weight: 2,
+                    opacity: 1
+                };
+            }
+        }).addTo(map);
+    })
+    .catch(error => console.error('Error loading the GeoJSON data:', error));
