@@ -3,46 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Map of Washington, D.C.</title>
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-
-    <!-- Inline CSS for Map Styling -->
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-        #map {
-            height: 100vh; /* Full height */
-            width: 100%;  /* Full width */
-        }
-    </style>
+    <title>Ward Map</title>
+    <!-- Link to the stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to Leaflet.js library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
+    <!-- Save Map Button -->
+    <button id="saveMap">Save Map</button>
 
-<!-- Map Container -->
-<div id="map"></div>
+    <!-- Map container -->
+    <div id="map"></div>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-
-<!-- JavaScript to Initialize the Map -->
-<script>
-    // Initialize the map and set its view to Washington, D.C.
-    var map = L.map('map').setView([38.9072, -77.0369], 12);
-
-    // Add a tile layer (base layer)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-</script>
-
+    <!-- Leaflet.js library -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- HTML2Canvas library for saving the map as an image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
+
