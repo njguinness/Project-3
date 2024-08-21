@@ -21,26 +21,25 @@ h1 {
 
 /* Style for the map container */
 #map {
-  height: 600px; /* Height of the map */
-  width: 80%; /* Width of the map */
-  max-width: 1000px; /* Maximum width of the map */
+  height: 80vh; /* Height of the map: 80% of the viewport height */
+  width: 90%; /* Width of the map: 90% of the viewport width */
+  max-width: 1200px; /* Maximum width of the map */
   margin: 20px auto; /* Center the map */
-  border: 2px solid #ccc; /* Border around the map */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border: 2px solid #ccc; /* Light grey border around the map */
+  border-radius: 8px; /* Rounded corners for the map container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a raised effect */
 }
 
 /* CSS for ward number labels */
 .ward-label {
   background-color: white;
   border-radius: 50%; /* Make the label circular */
-  padding: 5px; /* Padding around the text */
+  padding: 5px; /* Padding around the text inside the label */
   text-align: center;
   font-weight: bold;
   color: red;
   font-size: 14px;
-  border: 1px solid #FF0000; /* Optional: red border around the label */
+  border: 1px solid #FF0000; /* Red border around the label */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the label */
+  white-space: nowrap; /* Prevent the label text from wrapping */
 }
-
-

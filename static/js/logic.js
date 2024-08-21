@@ -7,34 +7,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Function to calculate the centroid of a polygon
-function calculateCentroid(coordinates) {
-    let centroid = [0, 0];
-    let area = 0;
-
-    for (let i = 0; i < coordinates[0].length - 1; i++) {
-        const x1 = coordinates[0][i][0];
-        const y1 = coordinates[0][i][1];
-        const x2 = coordinates[0][i + 1][0];
-        const y2 = coordinates[0][i + 1][1];
-
-        const a = (x1 * y2 - x2 * y1);
-        area += a;
-        centroid[0] += (x1 + x2) * a;
-        centroid[1] += (y1 + y2) * a;
-    }
-
-    area *= 0.5;
-    centroid[0] /= (6 * area);
-    centroid[1] /= (6 * area);
-
-    return centroid;
-}
-
 // Load GeoJSON data and add it to the map
-fetch('Wards_from_2022.geojson')
+fetch('path-to-your-ward-boundaries.geojson')
     .then(response => response.json())
     .then(data => {
+        // Add the GeoJSON data to the map with custom styling
         L.geoJSON(data, {
             style: function (feature) {
                 return {
@@ -49,15 +26,15 @@ fetch('Wards_from_2022.geojson')
                     // Bind a popup showing the ward name
                     layer.bindPopup("Ward: " + feature.properties.NAME);
 
-                    // Calculate the centroid of the polygon (for placing the label)
-                    const centroid = calculateCentroid(feature.geometry.coordinates);
+                    // Use getBounds().getCenter() to find the center of the polygon
+                    const center = layer.getBounds().getCenter();
 
-                    // Add a marker at the centroid with the ward number as a label
-                    L.marker(centroid, {
+                    // Add a marker at the center with the ward number as a label
+                    L.marker(center, {
                         icon: L.divIcon({
                             className: 'ward-label',
                             html: feature.properties.NAME,
-                            iconSize: [20, 20]
+                            iconSize: null // Allow the label to auto-size
                         })
                     }).addTo(map);
                 }

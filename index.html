@@ -16,6 +16,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            background-color: #f8f8f8; /* Light background color */
         }
 
         /* Style for the page title */
@@ -28,9 +29,9 @@
 
         /* Style for the map container */
         #map {
-            height: 600px; /* Height of the map */
-            width: 80%; /* Width of the map */
-            max-width: 1000px; /* Maximum width of the map */
+            height: 80vh; /* Height of the map: 80% of the viewport height */
+            width: 90%; /* Width of the map: 90% of the viewport width */
+            max-width: 1200px; /* Maximum width of the map */
             margin: 20px auto; /* Center the map */
             border: 2px solid #ccc; /* Border around the map */
             border-radius: 8px; /* Rounded corners */
@@ -40,12 +41,15 @@
         /* CSS for ward number labels */
         .ward-label {
             background-color: white;
-            border-radius: 50%;
-            padding: 5px;
+            border-radius: 50%; /* Make the label circular */
+            padding: 5px; /* Padding around the text */
             text-align: center;
             font-weight: bold;
             color: red;
             font-size: 14px;
+            border: 1px solid #FF0000; /* Optional: red border around the label */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the label */
+            white-space: nowrap; /* Prevent text from wrapping */
         }
     </style>
 </head>
@@ -66,30 +70,6 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Function to calculate the centroid of a polygon
-        function calculateCentroid(coordinates) {
-            let centroid = [0, 0];
-            let area = 0;
-
-            for (let i = 0; i < coordinates[0].length - 1; i++) {
-                const x1 = coordinates[0][i][0];
-                const y1 = coordinates[0][i][1];
-                const x2 = coordinates[0][i + 1][0];
-                const y2 = coordinates[0][i + 1][1];
-
-                const a = (x1 * y2 - x2 * y1);
-                area += a;
-                centroid[0] += (x1 + x2) * a;
-                centroid[1] += (y1 + y2) * a;
-            }
-
-            area *= 0.5;
-            centroid[0] /= (6 * area);
-            centroid[1] /= (6 * area);
-
-            return centroid;
-        }
-
         // Load GeoJSON data and add it to the map
         fetch('Wards_from_2022.geojson')
             .then(response => response.json())
@@ -108,15 +88,15 @@
                             // Bind a popup showing the ward name
                             layer.bindPopup("Ward: " + feature.properties.NAME);
 
-                            // Calculate the centroid of the polygon (for placing the label)
-                            const centroid = calculateCentroid(feature.geometry.coordinates);
+                            // Use getBounds().getCenter() to find the center of the polygon
+                            const center = layer.getBounds().getCenter();
 
-                            // Add a marker at the centroid with the ward number as a label
-                            L.marker(centroid, {
+                            // Add a marker at the center with the ward number as a label
+                            L.marker(center, {
                                 icon: L.divIcon({
                                     className: 'ward-label',
                                     html: feature.properties.NAME,
-                                    iconSize: [20, 20]
+                                    iconSize: null // Allow the label to auto-size
                                 })
                             }).addTo(map);
                         }
