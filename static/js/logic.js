@@ -67,5 +67,3 @@ fetch('Wards_from_2022.geojson')
     .catch(error => {
         console.error("Error loading the GeoJSON data: ", error);
     });
-
-
