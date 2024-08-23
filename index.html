@@ -84,9 +84,9 @@
                         };
                     },
                     onEachFeature: function (feature, layer) {
-                        if (feature.properties && feature.properties.NAME) {
+                        if (feature.properties && feature.properties.Name) {
                             // Bind a popup showing the ward name
-                            layer.bindPopup("Ward: " + feature.properties.NAME);
+                            layer.bindPopup(feature.properties.Name);
 
                             // Use getBounds().getCenter() to find the center of the polygon
                             const center = layer.getBounds().getCenter();
@@ -95,7 +95,7 @@
                             L.marker(center, {
                                 icon: L.divIcon({
                                     className: 'ward-label',
-                                    html: feature.properties.NAME,
+                                    html: feature.properties.Name,
                                     iconSize: null // Allow the label to auto-size
                                 })
                             }).addTo(map);

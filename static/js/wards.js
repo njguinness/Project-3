@@ -8,10 +8,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Load GeoJSON data and add it to the map
-fetch('path-to-your-ward-boundaries.geojson')
+fetch('Wards_from_2022.geojson')
     .then(response => response.json())
     .then(data => {
-        // Add the GeoJSON data to the map with custom styling
         L.geoJSON(data, {
             style: function (feature) {
                 return {
@@ -22,9 +21,9 @@ fetch('path-to-your-ward-boundaries.geojson')
                 };
             },
             onEachFeature: function (feature, layer) {
-                if (feature.properties && feature.properties.NAME) {
+                if (feature.properties && feature.properties.Name) {
                     // Bind a popup showing the ward name
-                    layer.bindPopup("Ward: " + feature.properties.NAME);
+                    layer.bindPopup(feature.properties.Name);
 
                     // Use getBounds().getCenter() to find the center of the polygon
                     const center = layer.getBounds().getCenter();
@@ -33,10 +32,35 @@ fetch('path-to-your-ward-boundaries.geojson')
                     L.marker(center, {
                         icon: L.divIcon({
                             className: 'ward-label',
-                            html: feature.properties.NAME,
+                            html: feature.properties.Name,
                             iconSize: null // Allow the label to auto-size
                         })
                     }).addTo(map);
+
+                    // Add event listener to open the modal with ward info
+                    layer.on('click', function() {
+                        var modal = document.getElementById("wardModal");
+                        var span = document.getElementsByClassName("close")[0];
+                        var wardInfo = document.getElementById("wardInfo");
+
+                        // Display ward ID in modal
+                        wardInfo.innerHTML =  feature.properties.Name;
+
+                        // Display the modal
+                        modal.style.display = "block";
+
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        };
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        };
+                    });
                 }
             }
         }).addTo(map);

@@ -37,9 +37,65 @@ h1 {
   padding: 5px; /* Padding around the text inside the label */
   text-align: center;
   font-weight: bold;
-  color: red;
+  color: rgb(68, 0, 255);
   font-size: 14px;
   border: 1px solid #FF0000; /* Red border around the label */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the label */
   white-space: nowrap; /* Prevent the label text from wrapping */
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Custom popup style */
+.leaflet-popup-content-wrapper {
+    background: white; /* Ensure the background is white */
+    color: black; /* Set the text color to black */
+    font-family: Arial, sans-serif; /* Set font-family */
+    font-size: 14px; /* Set font-size */
+}
+
+.leaflet-popup-content {
+    margin: 0;
+    padding: 8px;
+}
+
+.leaflet-popup-tip {
+    background: white; /* Ensure the popup tip (arrow) has a white background */
 }
