@@ -38,7 +38,7 @@ h1 {
   text-align: center;
   font-weight: bold;
   color: rgb(68, 0, 255);
-  font-size: 14px;
+  font-size: 10px;
   border: 1px solid #FF0000; /* Red border around the label */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the label */
   white-space: nowrap; /* Prevent the label text from wrapping */
@@ -72,7 +72,7 @@ h1 {
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 10px;
   font-weight: bold;
 }
 

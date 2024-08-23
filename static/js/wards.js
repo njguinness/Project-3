@@ -1,11 +1,11 @@
 // Initialize the map and set its view to Washington, D.C.
-var map = L.map('map').setView([38.9072, -77.0369], 12);
+// var map = L.map('map').setView([38.9072, -77.0369], 12);
 
 // Add a tile layer (the map background)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+//L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//    maxZoom: 18,
+//    attribution: '© OpenStreetMap contributors'
+//}).addTo(map);
 
 // Load GeoJSON data and add it to the map
 fetch('Wards_from_2022.geojson')
